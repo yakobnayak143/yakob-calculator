@@ -1,114 +1,66 @@
- yakob's calci
+ <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Web Calculator</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f0f0f0;
-      font-family: Arial, sans-serif;
-    }
-    .calculator {
-      background: #222;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-    #display {
-      width: 100%;
-      height: 50px;
-      font-size: 24px;
-      text-align: right;
-      margin-bottom: 15px;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      background: #fff;
-    }
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 70px);
-      gap: 10px;
-    }
-    button {
-      height: 60px;
-      font-size: 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      background: #444;
-      color: #fff;
-      transition: background 0.2s;
-    }
-    button:hover {
-      background: #666;
-    }
-    .equal {
-      grid-column: span 2;
-      background: #28a745;
-    }
-    .equal:hover {
-      background: #218838;
-    }
-    .clear {
-      background: #dc3545;
-    }
-    .clear:hover {
-      background: #c82333;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Calculator</title>
+  <meta name="description" content="Simple Calculator With Dark Mode." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="assets/calculator.ico">
+  <link rel="stylesheet" href="styles/dark.css" id="theme" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <div class="calculator">
-    <input type="text" id="display" disabled>
-    <div class="buttons">
-      <button onclick="clearDisplay()" class="clear">C</button>
-      <button onclick="appendValue('/')">÷</button>
-      <button onclick="appendValue('*')">×</button>
-      <button onclick="appendValue('-')">−</button>
-
-      <button onclick="appendValue('7')">7</button>
-      <button onclick="appendValue('8')">8</button>
-      <button onclick="appendValue('9')">9</button>
-      <button onclick="appendValue('+')">+</button>
-
-      <button onclick="appendValue('4')">4</button>
-      <button onclick="appendValue('5')">5</button>
-      <button onclick="appendValue('6')">6</button>
-      <button onclick="appendValue('.')">.</button>
-
-      <button onclick="appendValue('1')">1</button>
-      <button onclick="appendValue('2')">2</button>
-      <button onclick="appendValue('3')">3</button>
-      <button onclick="calculate()" class="equal">=</button>
-
-      <button onclick="appendValue('0')" style="grid-column: span 2;">0</button>
+  <div class="wrapper">
+    <div class="container">
+      <div class="header-container">
+        <!-- This heading also notifies about the theme change.-->
+        <h1 id="toast">Calculator</h1>
+        <div class="top-buttons">
+          <a href="https://github.com/zxcodes/JavaScript-Calculator">
+            <img src="assets/GitHubLight.svg" alt="Sun Icon" height="22.5" width="22.5" id="github-icon">
+          </a>
+          <button type="button" onclick="changeTheme()" class="theme-button">
+            <img src="assets/SunIcon.svg" alt="Theme Icon" height="19" width="19" id="theme-icon">
+          </button>
+        </div>
+      </div>
+      <div class="first-row">
+        <input type="text" name="result" id="result" placeholder="Result" readonly />
+        <input type="button" value="C" onclick="result.value=''" id="clear-button" />
+      </div>
+      <div class="second-row">
+        <input type="button" value="1" onclick="liveScreen(1)" />
+        <input type="button" value="2" onclick="liveScreen(2)" />
+        <input type="button" value="3" onclick="liveScreen(3)" />
+        <input type="button" value="+" onclick="liveScreen('+')" />
+      </div>
+      <div class="third-row">
+        <input type="button" value="4" onclick=" liveScreen(4)" />
+        <input type="button" value="5" onclick=" liveScreen(5)" />
+        <input type="button" value="6" onclick=" liveScreen(6)" />
+        <input type="button" value="-" onclick="liveScreen('-')" />
+      </div>
+      <div class="fourth-row">
+        <input type="button" value="7" onclick="liveScreen(7)" />
+        <input type="button" value="8" onclick="liveScreen(8)" />
+        <input type="button" value="9" onclick=" liveScreen(9)" />
+        <input type="button" value="x" onclick="liveScreen('*')" />
+      </div>
+      <div class="fifth-row">
+        <input type="button" value="/" onclick="liveScreen('/')" />
+        <input type="button" value="0" onclick="liveScreen(0)" />
+        <input type="button" value="." onclick="liveScreen('.')" />
+        <input type="button" value="=" onclick="calculate(result.value)" />
+      </div>
     </div>
   </div>
-
-  <script>
-    let display = document.getElementById("display");
-
-    function appendValue(val) {
-      display.value += val;
-    }
-
-    function clearDisplay() {
-      display.value = "";
-    }
-
-    function calculate() {
-      try {
-        display.value = eval(display.value);
-      } catch {
-        display.value = "Error";
-      }
-    }
+  <script src="scripts/script.js">
   </script>
 </body>
-</html>
 
+</html>
